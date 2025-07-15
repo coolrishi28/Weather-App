@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Quicksand", sans-serif;
+      }
+
+      .box {
+  animation: fadeIn 1.5s ease;
+  transition: background 0.3s ease;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* 2. Slide-in animation for top controls */
+.controls {
+  animation: slideDown 1.2s ease-in-out;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 3. Pulse weather icon */
+#weathercon .fas {
+  animation: pulseIcon 3s ease-in-out infinite;
+}
+
+@keyframes pulseIcon {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* 4. Smooth transitions on theme and buttons */
+body, .box, button {
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  background-color: #ddd;
+}
+
+/* 5. Forecast cards (if added) hover effect */
+.forecast-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.forecast-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.2);
+}
+
+      html, body {
+        height: 100%;
+        width: 100%;
+        font-size: 62.5%;
+        background: #eee;
+      }
+
+      body {
+  background: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 100vw;
+  padding-top: 8rem;
+  box-sizing: border-box;
+}
+
+      .box {
+        width: 30vw;
+        height: 65vh;
+        background: #a5bbdd;
+        border-radius: 0.5rem;
+        box-shadow: 0 0.2rem 3rem rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+        min-width: 28rem;
+        min-height: 40rem;
+      }
+
+      .wave {
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        width: 50rem;
+        height: 50rem;
+        margin-left: -25rem;
+        margin-top: -25rem;
+        background: white;
+        border-radius: 43%;
+        opacity: 0.3;
+        transform-origin: 50% 48%;
+        animation: drift 3s linear infinite;
+        z-index: 1;
+      }
+
+      .wave.-two {
+        animation: drift 5s linear infinite;
+        opacity: 0.2;
+        z-index: 1;
+      }
+
+      .wave.-three {
+        animation: drift 7s linear infinite;
+        opacity: 0.1;
+        z-index: 1;
+      }
+
+      @keyframes drift {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        max-height: 45%;
+        padding: 1rem;
+        z-index: 10;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.1);
+      }
+
+      .location {
+        font-size: 2.5rem;
+        font-weight: 700;
+        max-width: 90%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #fff;
+      }
+
+      .location:hover {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
+      }
+
+      .fa-street-view {
+        margin-right: 0.5rem;
+        animation: rotates 3s linear infinite alternate;
+      }
+
+      @keyframes rotates {
+        from {
+          transform: translateX(-0.5rem);
+        }
+        to {
+          transform: translateX(0.5rem);
+        }
+      }
+
+      #date {
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: #f1f2f6;
+        margin-top: 0.5rem;
+        text-transform: uppercase;
+      }
+
+      .temp {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-top: 2rem;
+      }
+
+      .tempmin_max {
+        font-size: 1.4rem;
+        margin-top: 0.5rem;
+        color: #f1f2f6;
+        word-wrap: break-word;
+        max-width: 90%;
+        line-height: 1.4;
+      }
+
+      #weathercon {
+        height: 55%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        z-index: 5;
+      }
+
+      #weathercon .fas {
+        font-size: 6rem;
+        animation: fas-anime 3s linear infinite alternate;
+      }
+
+      @keyframes fas-anime {
+        from {
+          transform: scale(1.1);
+        }
+        to {
+          transform: scale(1.5);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .box {
+          width: 90vw;
+          height: 80vh;
+        }
+
+        .temp {
+          font-size: 2.5rem;
+        }
+
+        .location {
+          font-size: 2rem;
+        }
+
+        .tempmin_max {
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (max-height: 500px) {
+        .box {
+          height: 80vh;
+        }
+
+        .wave {
+          top: 115%;
+        }
+      }
+    </style>
+
+    <title>Weather App by Shashwat Dwivedi</title>
+  </head>
+  <body>
+  <div class="controls" style="position: absolute; top: 2rem; width: 90%; display: flex; justify-content: space-between; align-items: center; z-index: 20;">
+    <input type="text" id="cityInput" placeholder="Enter city name..." style="padding: 0.5rem 1rem; font-size: 1.5rem; border-radius: 0.5rem; border: none; outline: none; width: 40%;" />
+    <button id="searchBtn" style="padding: 0.7rem 1.5rem; font-size: 1.4rem; border: none; border-radius: 0.5rem; cursor: pointer;">Search</button>
+    <button id="unitToggle" style="padding: 0.7rem 1rem; font-size: 1.4rem; border: none; border-radius: 0.5rem; cursor: pointer;">°F</button>
+    <button id="themeToggle" style="padding: 0.7rem 1rem; font-size: 1.4rem; border: none; border-radius: 0.5rem; cursor: pointer;">🌙</button>
+  </div>
+
+  <div class="box" id="weatherBox">
+    <div class="wave -one"></div>
+    <div class="wave -two"></div>
+    <div class="wave -three"></div>
+
+    <div id="weathercon">
+      <i class="fas fa-sun" style="color: #eccc68"></i>
+    </div>
+
+    <div class="info">
+      <h2 class="location">
+        <i class="fas fa-street-view"></i> {%location%}, {%country%}
+      </h2>
+      <p id="date">Loading...</p>
+      <h1 class="temp" id="currentTemp">{%tempval%}°C</h1>
+      <h3 class="tempmin_max" id="minMaxHumidity">
+        Min {%tempmin%}°C | Max {%tempmax%}°C | Humidity {%humidity%}%
+      </h3>
+    </div>
+  </div>
+
+  <div style="width: 90%; margin-top: 2rem;" id="forecastContainer"></div>
+
+  <script>
+    const curDate = document.getElementById("date");
+    const weatherBox = document.getElementById("weatherBox");
+    const themeToggle = document.getElementById("themeToggle");
+    const unitToggle = document.getElementById("unitToggle");
+    const forecastContainer = document.getElementById("forecastContainer");
+
+    const applyTheme = (theme) => {
+      if (theme === "dark") {
+        document.body.style.background = "#1e272e";
+        document.body.style.color = "#fff";
+        weatherBox.style.background = "#2f3542";
+        themeToggle.textContent = "☀️";
+      } else {
+        document.body.style.background = "#f3f2ef";
+        document.body.style.color = "#000";
+        weatherBox.style.background = "#a5bbdd";
+        themeToggle.textContent = "🌙";
+      }
+    };
+
+    const getTheme = () => localStorage.getItem("theme") || "light";
+
+applyTheme(getTheme());
+
+themeToggle.addEventListener("click", () => {
+  const newTheme = getTheme() === "dark" ? "light" : "dark";
+  localStorage.setItem("theme", newTheme);
+  applyTheme(newTheme);
+});
+
+    const getCurrentDay = () => {
+      const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      return days[new Date().getDay()];
+    };
+
+    const getCurrentTime = () => {
+      const now = new Date();
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const date = now.getDate();
+      const month = months[now.getMonth()];
+      let hours = now.getHours();
+      let mins = now.getMinutes().toString().padStart(2, "0");
+      const period = hours >= 12 ? "PM" : "AM";
+      if (hours > 12) hours -= 12;
+      return `${month} ${date} | ${hours}:${mins} ${period}`;
+    };
+
+    curDate.innerHTML = `${getCurrentDay()} | ${getCurrentTime()}`;
+
+    document.getElementById("searchBtn").addEventListener("click", () => {
+      const city = document.getElementById("cityInput").value.trim();
+      if (city) {
+        window.location.href = `/?city=${encodeURIComponent(city)}&unit=${getUnit()}`;
+      }
+    });
+
+    document.getElementById("cityInput").addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault(); // Prevent form submission if inside a form
+      document.getElementById("searchBtn").click();
+  }
+});
+    
+    const getUnit = () => localStorage.getItem("unit") || "metric"; // metric = °C, imperial = °F
+
+    const toggleUnit = () => {
+      const current = getUnit();
+      const newUnit = current === "metric" ? "imperial" : "metric";
+      localStorage.setItem("unit", newUnit);
+      unitToggle.textContent = newUnit === "metric" ? "°F" : "°C";
+      const currentCity = document.querySelector(".location")?.textContent?.split(",")[0]?.trim() || "Los Angeles";
+      window.location.href = `/?city=${currentCity}&unit=${newUnit}`;
+    };
+
+    unitToggle.addEventListener("click", toggleUnit);
+
+    window.onload = () => {
+      unitToggle.textContent = getUnit() === "metric" ? "°F" : "°C";
+    };
+  </script>
+</body>
+</html>
