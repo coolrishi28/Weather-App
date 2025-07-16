@@ -37,7 +37,6 @@
   }
 }
 
-/* 2. Slide-in animation for top controls */
 .controls {
   animation: slideDown 1.2s ease-in-out;
 }
@@ -53,7 +52,6 @@
   }
 }
 
-/* 3. Pulse weather icon */
 #weathercon .fas {
   animation: pulseIcon 3s ease-in-out infinite;
 }
@@ -73,7 +71,6 @@
   }
 }
 
-/* 4. Smooth transitions on theme and buttons */
 body, .box, button {
   transition: all 0.3s ease;
 }
@@ -83,7 +80,6 @@ button:hover {
   background-color: #ddd;
 }
 
-/* 5. Forecast cards (if added) hover effect */
 .forecast-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -101,17 +97,17 @@ button:hover {
       }
 
       body {
-  background: #f3f2ef;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  height: 100vh;
-  width: 100vw;
-  padding-top: 8rem;
-  box-sizing: border-box;
-}
+        background: #f3f2ef;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        height: 100vh;
+        width: 100vw;
+        padding-top: 8rem;
+        box-sizing: border-box;
+      }
 
       .box {
         width: 30vw;
@@ -375,7 +371,7 @@ themeToggle.addEventListener("click", () => {
 
     document.getElementById("cityInput").addEventListener("keypress", (event) => {
     if (event.key === "Enter") {
-      event.preventDefault(); // Prevent form submission if inside a form
+      event.preventDefault();
       document.getElementById("searchBtn").click();
   }
 });
